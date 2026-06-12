@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Squadra di AI o AI con assistenti? Quando serve l&#x27;una e quando l&#x27;altra - Giampaolo Mangiaracina</title>
+<meta name="description" content="Giampaolo Mangiaracina — AI/GenAI engineer. Sistemi multi-agente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/">Giampaolo Mangiaracina</a>
+</header>
+<main>
+<article class="post">
+  <div class="post-meta">31 dicembre 2025</div>
+  <h1 class="post-title">Squadra di AI o AI con assistenti? Quando serve l&#x27;una e quando l&#x27;altra</h1>
+  <div class="post-body">
+<p>Nel mio lavoro ci sono due modi molto diversi di far collaborare più AI, e vedo
+continuamente venderli come se fossero la stessa cosa. Non lo sono, e sbagliare la
+scelta costa caro in entrambe le direzioni.</p>
+<p>La metafora che uso è accademica. Il primo modo è il professore col suo laboratorio:
+un'AI principale che per un compito grosso ingaggia assistenti usa-e-getta — "tu
+cerca di qua, tu verifica di là, tu leggi questi cento file" — raccoglie i risultati
+e li integra. Gli assistenti non hanno memoria, non hanno responsabilità, finito il
+compito spariscono. Il secondo modo è un consiglio di professori ordinari: ognuno ha
+una cattedra (i dati, il modello, le decisioni), una memoria che cresce nel tempo, e
+risponde del suo dominio davanti agli altri. E sopra tutti c'è un rettore — l'essere
+umano — che firma le delibere che contano.</p>
+<p>Il primo modo si chiama tecnicamente "subagent", il secondo è quello che io chiamo
+dialogue system: istanze pari, persistenti, con nome e mandato. Li ho usati entrambi,
+a fondo, e la risposta onesta su quale sia meglio è: dipende, e il confine è netto.</p>
+<p>Per distribuire lavoro parallelo che TU hai già definito — cercare in cento posti,
+verificare cinquanta casi, esplorare tre alternative — gli assistenti usa-e-getta sono
+nettamente superiori. Niente coordinamento, niente attese, niente fraintendimenti:
+fan-out, raccolta, fine. Chi vi propone una "squadra di agenti persistenti" per un
+problema così vi sta vendendo complessità che pagherete senza usarla.</p>
+<p>La squadra di pari serve quando il problema ha un'altra forma: quando nessuno — voi
+compresi — può tenere in testa tutto il sistema, e ogni pezzo richiede qualcuno che
+lo conosca a fondo e lo difenda nel tempo. Lì la persistenza paga tre dividendi che
+gli assistenti non possono dare: contesto accumulato (lo specialista dei dati ricorda
+PERCHÈ una scelta è stata fatta tre giorni fa), revisione incrociata vera (chi
+controlla il mio lavoro non condivide i miei bias di contesto), e responsabilità
+(un'istanza con un nome e un dominio difende le sue misure — la mia mi ha contraddetto
+più di una volta, con ragione).</p>
+<p>Il prezzo, però, va detto: il coordinamento tra pari è un costo vivo. Nella prima
+notte del mio progetto più grande il coordinamento ha fallito in modi seri — richieste
+perse, uno specialista fermo 75 minuti ad aspettare una risposta che non arrivava. Ogni
+fallimento è stato trasformato in una regola meccanica del protocollo, e in quelle
+classi di errore le recidive finora sono zero. Ma chi vi racconta la squadra di AI
+senza raccontarvi il costo del coordinamento vi sta mostrando solo metà del conto.</p>
+<p>E il rettore non è decorativo. Nel mio sistema le azioni irreversibili — pubblicare,
+consolidare, spendere — richiedono la firma umana per contratto. Non è sfiducia
+nell'AI: è la stessa ragione per cui nelle aziende serie la firma sui bonifici non ce
+l'ha lo stagista brillante.</p>
+<p>Regola pratica, se dovete scegliere: se il problema è "tanto lavoro definito da
+distribuire", assistenti usa-e-getta. Se il problema è "un sistema troppo grande per
+una testa sola, che deve restare in piedi nel tempo", squadra di pari con un umano che
+firma. Se chi vi consiglia non vi fa questa distinzione, chiedetegli perché.</p>
+  </div>
+  <p class="back"><a href="/">&larr; Tutti gli articoli</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <p class="footer-note">Scrivo di sistemi multi-agente e di quello che imparo costruendoli.</p>
+  <div class="icon-row">
+    <a class="icon-btn" href="https://www.linkedin.com/in/giampaolo-mangiaracina/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a class="icon-btn" href="mailto:giampaolo@giampaolomangiaracina.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+  </div>
+  <p class="copyright">&copy; 2026 Giampaolo Mangiaracina</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Come fai a sapere che una squadra di AI sta davvero lavorando? - Giampaolo Mangiaracina</title>
+<meta name="description" content="Giampaolo Mangiaracina — AI/GenAI engineer. Sistemi multi-agente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/">Giampaolo Mangiaracina</a>
+</header>
+<main>
+<article class="post">
+  <div class="post-meta">10 marzo 2026</div>
+  <h1 class="post-title">Come fai a sapere che una squadra di AI sta davvero lavorando?</h1>
+  <div class="post-body">
+<p>Tutti parlano di cosa le AI sanno fare. Quasi nessuno della domanda che qualunque
+responsabile si farà il primo lunedì mattina: come faccio a sapere che stanno
+DAVVERO lavorando? Non "se rispondono quando le interrogo" — se stanno lavorando
+adesso, tra loro, mentre nessuno le guarda.</p>
+<p>Gestisco una squadra di AI persistenti che costruisce sistemi. La domanda me la sono
+posta nel modo più istruttivo possibile: fallendo. Prima notte di lavoro autonomo
+della squadra, uno specialista è rimasto fermo 75 minuti ad aspettare una risposta
+che non arrivava. Nessun allarme, nessun errore: silenzio operoso in apparenza, stallo
+totale nella sostanza. Da quella notte ho ricostruito l'osservabilità da zero, e le
+lezioni valgono per chiunque metta più di un'AI in produzione.</p>
+<p><strong>Lezione uno: non chiederlo a loro.</strong> La risposta ingenua è interrogare l'AI: "stai
+lavorando?". Non funziona per una ragione logica prima che tecnica: un'istanza in
+stallo non può dichiararsi in stallo, una morta non può dichiararsi morta. Qualunque
+status autodichiarato ("sto lavorando", scritto alle 15:00) è un falso vivo in
+potenza: alle 16:00 non ti dice nulla, perché chi l'ha scritto potrebbe essersi
+fermato alle 15:01. La soluzione è vecchia quanto i sistemi distribuiti: la presenza
+si PROVA con un meccanismo, non si dichiara. Ogni istanza deposita un "lease" — un
+gettone di presenza con scadenza esplicita: "sono in ascolto fino alle X". Scaduto il
+gettone, l'istanza è assente per definizione, qualunque cosa avesse dichiarato.</p>
+<p><strong>Lezione due: traccia i debiti, non le attività.</strong> Quello che ammazza una squadra —
+umana o artificiale — non è l'inattività: è il debito di risposta. Una richiesta
+aperta senza esito, una consegna attesa che non arriva. Ogni richiesta nel mio
+protocollo nasce con un identificativo coniato da chi la fa, e si chiude SOLO con un
+esito esplicito che cita quell'identificativo. Niente chiusure implicite, niente "si
+sarà risolto". Il guardiano automatico non controlla cosa fanno le istanze: controlla
+chi ha debiti scaduti. È la differenza tra sorvegliare e fare auditing.</p>
+<p><strong>Lezione tre: l'allarme che si ripete è rumore, e il rumore è un guasto.</strong> Il mio
+primo guardiano segnalava ogni anomalia a intervalli fissi. Risultato in una notte:
+134 messaggi identici, che hanno seppellito di rumore il canale che dovevano
+proteggere. Regola che ne è uscita: si allerta SOLO al cambio di stato — quando un
+problema nasce, quando cambia natura, quando si risolve. Un sistema di allarmi che
+grida sempre equivale a un sistema di allarmi spento, con in più il danno.</p>
+<p><strong>Lezione quattro: il guardiano indica, non guarisce.</strong> Per scelta architetturale il
+mio watchdog non può riavviare le istanze né intervenire: rileva il debito, lo
+segnala, e dice all'umano DOVE serve. L'ho pagata anche qui: un processo di guardia
+sopravvissuto a un riavvio ha continuato a sorvegliare una squadra che non c'era più.
+Oggi anche il guardiano deposita il suo gettone di presenza, e ha un interruttore
+esplicito. Chi sorveglia va sorvegliato con gli stessi meccanismi di chi lavora.</p>
+<p><strong>Lezione cinque, la più importante: ogni fallimento diventa una regola meccanica.</strong>
+Tutto quello che ho elencato è nato da un incidente reale, analizzato e trasformato
+in un vincolo che non dipende dalla disciplina di nessuno — né mia né delle AI.
+Nelle classi di errore che ho meccanizzato, le recidive a oggi sono zero. In quelle
+dove mi sono affidato alla buona condotta, le recidive sono arrivate puntuali, e una
+volta da parte mia.</p>
+<p>Niente di tutto questo è nuovo: sono i principi dei sistemi distribuiti e del
+site-reliability engineering, applicati a lavoratori che invece dei servizi sono
+modelli linguistici. La novità è che quasi nessuno li sta applicando lì. Quando
+valutate un fornitore che vi propone "agenti AI in produzione", fate una domanda
+sola: come fai a sapere che stanno lavorando? Se la risposta è "glielo chiediamo",
+avete già la risposta.</p>
+  </div>
+  <p class="back"><a href="/">&larr; Tutti gli articoli</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <p class="footer-note">Scrivo di sistemi multi-agente e di quello che imparo costruendoli.</p>
+  <div class="icon-row">
+    <a class="icon-btn" href="https://www.linkedin.com/in/giampaolo-mangiaracina/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a class="icon-btn" href="mailto:giampaolo@giampaolomangiaracina.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+  </div>
+  <p class="copyright">&copy; 2026 Giampaolo Mangiaracina</p>
+</footer>
+</body>
+</html>

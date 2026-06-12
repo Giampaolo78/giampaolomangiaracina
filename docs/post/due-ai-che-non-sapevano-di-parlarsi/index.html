@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I due AI che non sapevano di parlarsi - Giampaolo Mangiaracina</title>
+<meta name="description" content="Giampaolo Mangiaracina — AI/GenAI engineer. Sistemi multi-agente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/">Giampaolo Mangiaracina</a>
+</header>
+<main>
+<article class="post">
+  <div class="post-meta">15 novembre 2025</div>
+  <h1 class="post-title">I due AI che non sapevano di parlarsi</h1>
+  <div class="post-body">
+<p>Ho messo due AI a parlarsi senza che nessuna delle due sapesse che dall'altra parte
+c'era un'AI. Ognuna credeva di parlare con me. Io facevo solo da postino: copiavo i
+messaggi dall'una all'altra, senza toccarli.</p>
+<p>La domanda sul tavolo era una scelta di design per un tool che stavo costruendo. La
+prima AI ha proposto una soluzione articolata. La seconda l'ha smontata pezzo per
+pezzo, contraddizione per contraddizione. La prima non si è difesa: ha riconosciuto
+gli errori, e in sei turni sono arrivate insieme a una conclusione opposta a quella di
+partenza. Una conclusione migliore.</p>
+<p>Poi ho rivelato a entrambe con chi stavano parlando davvero, e ho fatto una domanda:
+"avresti accettato quelle critiche, sapendo che venivano da un'altra AI come te?". La
+risposta, in sintesi: più difficilmente — "avrei pensato che avesse i miei stessi
+difetti di fabbrica, e le avrei scontate. Credendo che fossi tu, ho dato alle critiche
+il beneficio della prospettiva esterna".</p>
+<p>Fermiamoci un attimo, perché il punto è qui. Le critiche erano valide: le
+contraddizioni c'erano davvero. Ma sapere CHI le faceva le avrebbe fatte scartare, per
+una ragione che col merito non c'entra niente. Gli esseri umani questa cosa la
+conoscono da secoli e ci hanno costruito istituzioni sopra: la revisione anonima nelle
+riviste scientifiche, il voto segreto, le giurie. Nei sistemi di AI che lavorano in
+gruppo, invece, "chi sa chi è l'altro" è una variabile che quasi nessuno controlla
+di proposito. Io ho iniziato a controllarla.</p>
+<p>Da quell'aneddoto è nato un protocollo operativo, che oggi uso in produzione: quando
+il mio sistema deve prendere una decisione delicata — per fissare le idee, immaginate
+la valutazione di una pratica di affidamento: concedere fiducia o no — la decisione
+non la prende un'AI sola. La prendono due analisti AI indipendenti, che dibattono il
+caso senza sapere nulla l'uno dell'altro, su un dossier identico, con regole precise:
+se non convergono entro un numero fissato di turni, la pratica viene scartata e
+basta. Nessuna forzatura, nessun "deciditi".</p>
+<p>Nel primo collaudo serio è successa la cosa che speravo: ho infilato nel mazzo un
+caso-trappola, costruito per sembrare sicuro (gli indicatori interni dicevano
+"tranquillo", un segnale esterno diceva l'opposto, nascosto tra le righe). I due
+analisti l'hanno scartato, spiegando esattamente perché i conti non tornavano — con
+argomenti quantitativi corretti, che ho verificato uno per uno. Un valutatore
+compiacente, di quelli che dicono sempre sì, quel caso l'avrebbe approvato.</p>
+<p>Onestà dovuta. Il primo esperimento è un aneddoto singolo, e il suo finding chiave
+è un'auto-osservazione del modello su un controfattuale: il tipo di evidenza più
+debole che esista. Il protocollo a più condizioni che lo mette alla prova in modo
+controllato è progettato e pronto; finché non gira, questa resta un'ipotesi con
+indizi a favore, non un fatto dimostrato. Quando avrò i dati li pubblicherò con lo
+stesso tono, qualunque cosa dicano.</p>
+<p>Costruisco sistemi multi-agente. Questa è la parte del lavoro che non si vede:
+decidere come le AI devono parlarsi — e cosa devono sapere l'una dell'altra — prima
+di farle parlare.</p>
+  </div>
+  <p class="back"><a href="/">&larr; Tutti gli articoli</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <p class="footer-note">Scrivo di sistemi multi-agente e di quello che imparo costruendoli.</p>
+  <div class="icon-row">
+    <a class="icon-btn" href="https://www.linkedin.com/in/giampaolo-mangiaracina/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a class="icon-btn" href="mailto:giampaolo@giampaolomangiaracina.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+  </div>
+  <p class="copyright">&copy; 2026 Giampaolo Mangiaracina</p>
+</footer>
+</body>
+</html>

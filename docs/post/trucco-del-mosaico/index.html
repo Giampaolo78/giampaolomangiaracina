@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Far capire un video a un&#x27;AI senza GPU: il trucco del mosaico - Giampaolo Mangiaracina</title>
+<meta name="description" content="Giampaolo Mangiaracina — AI/GenAI engineer. Sistemi multi-agente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/">Giampaolo Mangiaracina</a>
+</header>
+<main>
+<article class="post">
+  <div class="post-meta">15 febbraio 2026</div>
+  <h1 class="post-title">Far capire un video a un&#x27;AI senza GPU: il trucco del mosaico</h1>
+  <div class="post-body">
+<p>C'è un problema che chiunque lavori con le telecamere conosce: far capire a una
+macchina COSA sta succedendo in un video — non quali oggetti ci sono, ma cosa sta
+accadendo — costa carissimo. O servono GPU dedicate, o si manda tutto in cloud
+pagando per ogni secondo analizzato, con la latenza e le questioni privacy che ne
+seguono. Sui dispositivi economici — uno smartphone di fascia bassa, una telecamera
+IP, un piccolo computer da quadro elettrico — la comprensione video semplicemente non
+gira.</p>
+<p>Sto sperimentando un'architettura che aggira il problema invece di affrontarlo di
+forza. L'idea è semplice al punto da sembrare una furbata: <strong>trasformare il video in
+una singola immagine</strong>.</p>
+<p>Funziona così. Sul dispositivo economico gira solo un rilevatore di oggetti
+velocissimo e "stupido" — vede componenti, attrezzi, mani, dispositivi di protezione,
+trenta volte al secondo, ma non capisce niente di quello che vede. Ogni pochi secondi,
+il sistema prende una manciata di fotogrammi e li impagina in un mosaico: una griglia
+di miniature, in ordine di tempo, con sopra stampate le etichette di ciò che il
+rilevatore ha visto e di come si muoveva ("avvitatore: velocità alta, 3 giri al
+secondo"). Quel mosaico — una sola immagine statica, leggibile anche da un occhio
+umano — viene dato a un modello AI piccolo, che non deve più riconoscere nulla (le
+etichette sono già scritte): deve solo inferire l'azione. "Sta fissando il pannello
+laterale. Ha smesso da due minuti." Il suo output testuale, infine, arriva a un
+modello intelligente che ragiona e decide se intervenire.</p>
+<p>Il risultato sperimentale che mi ha sorpreso è il terzo passaggio. Nei test
+comparativi, lo stesso modello intelligente che riceveva l'immagine grezza descriveva
+la scena ma NON vedeva il problema ("lavorazione energica", davanti a un'operazione
+fuori sequenza che avrebbe imposto di smontare tutto); ricevendo solo il testo
+strutturato, lo stesso modello identificava l'errore con precisione ("sequenza
+violata: il pannello prima del telaio che deve sostenerlo") e suggeriva l'intervento
+immediato. Separare la percezione dal ragionamento non è un compromesso imposto
+dall'hardware povero: è un vantaggio. Chi ragiona, ragiona meglio su informazione
+già digerita.</p>
+<p>Tre proprietà di questa architettura che per un'azienda contano più della tecnica.
+La prima: il mosaico è ispezionabile — un umano lo guarda e vede ESATTAMENTE ciò che
+ha visto il modello; quando qualcosa va male, il debug è guardare una figura, non
+scavare in una scatola nera. La seconda: il riferimento di latenza è umano — un
+supervisore in carne e ossa reagisce in 3-6 secondi, il ciclo del mosaico chiude in
+5-7; per gli eventi davvero critici (fumo, una caduta) il rilevatore veloce lancia
+l'allarme immediato senza aspettare nessuno. La terza: i volti e le targhe si possono
+sfocare al primo passaggio, sul dispositivo — quello che esce verso i modelli è già
+anonimizzato.</p>
+<p>La stessa struttura si adatta a domini diversi ricalibrando solo i due estremi: cosa
+rilevare e quali azioni riconoscere. Supervisione di un assemblaggio industriale,
+monitoraggio del territorio (la buca segnalata da sei giorni), supporto alla
+fisioterapia (l'angolo del ginocchio che non raggiunge l'obiettivo), coaching sportivo
+tra un punto e l'altro. L'infrastruttura nel mezzo non cambia.</p>
+<p>Onestà dovuta: siamo a livello di proof of concept — quattro test controllati, dati
+in parte sintetici, nessun deployment in produzione. I numeri che ho citato sono
+misure di laboratorio, e il fine-tuning del lettore di mosaici è lavoro davanti, non
+dietro. Ma il principio — comprare comprensione video al prezzo di una lettura di
+immagini — ha retto a ogni test fatto finora, e il prossimo passo è metterlo alla
+prova su flussi reali.</p>
+<p>Costruisco sistemi dove modelli piccoli e modelli intelligenti si dividono il lavoro.
+La parte difficile non è mai il modello: è decidere cosa deve viaggiare tra l'uno e
+l'altro.</p>
+  </div>
+  <p class="back"><a href="/">&larr; Tutti gli articoli</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <p class="footer-note">Scrivo di sistemi multi-agente e di quello che imparo costruendoli.</p>
+  <div class="icon-row">
+    <a class="icon-btn" href="https://www.linkedin.com/in/giampaolo-mangiaracina/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a class="icon-btn" href="mailto:giampaolo@giampaolomangiaracina.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+  </div>
+  <p class="copyright">&copy; 2026 Giampaolo Mangiaracina</p>
+</footer>
+</body>
+</html>

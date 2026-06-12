@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il dialogue system: cosa ho costruito e cosa ho validato finora - Giampaolo Mangiaracina</title>
+<meta name="description" content="Giampaolo Mangiaracina — AI/GenAI engineer. Sistemi multi-agente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/">Giampaolo Mangiaracina</a>
+</header>
+<main>
+<article class="post">
+  <div class="post-meta">9 giugno 2026</div>
+  <h1 class="post-title">Il dialogue system: cosa ho costruito e cosa ho validato finora</h1>
+  <div class="post-body">
+<h2>L'idea in due righe</h2>
+<p>Ho fatto lavorare insieme una squadra di intelligenze artificiali — un caposquadra AI,
+tre specialisti AI e io come supervisore — e in circa 36 ore la squadra ha costruito un
+sistema predittivo completo: acquisizione dati, modello, livello decisionale. Il dominio
+specifico del progetto resta riservato; per raccontarlo uso un caso equivalente, la
+<strong>previsione del rischio di mancato pagamento</strong> (dato uno storico di clienti e fatture,
+stimare la probabilità che un pagamento non arrivi, e decidere a chi estendere fiducia).
+Non è una demo: ogni pezzo è stato misurato, verificato in modo incrociato e
+documentato per iscritto.</p>
+<h2>Come funziona, senza tecnicismi</h2>
+<ul>
+<li>Ogni AI della squadra è <strong>persistente</strong>: ha un nome, un dominio di responsabilità
+  ("i dati", "il modello", "le decisioni") e accumula esperienza sul suo pezzo, come un
+  collaboratore che non cambia ogni giorno.</li>
+<li>Le AI <strong>si parlano per iscritto</strong> su bacheche condivise: ogni richiesta, risposta e
+  consegna resta agli atti. Il risultato collaterale ha un valore enorme per un'azienda:
+  <strong>tracciabilità totale</strong> — di ogni decisione si può ricostruire chi l'ha presa,
+  quando e su quale evidenza.</li>
+<li><strong>L'essere umano resta il capo</strong>: le azioni irreversibili (pubblicare, salvare in via
+  definitiva, spendere) richiedono la mia firma esplicita. La squadra propone e
+  argomenta; le decisioni che contano passano da me. Niente "AI autonoma che fa da
+  sola": è una scelta di progetto, non un limite.</li>
+</ul>
+<h2>Cosa è stato validato (fatti, non promesse)</h2>
+<p><strong>1. La squadra consegna davvero.</strong> Sistema completo costruito in una notte più un
+giorno: pipeline dati con 76 variabili costruite senza "barare" (nessuna informazione
+dal futuro, verificato meccanicamente), modello predittivo, livello decisionale con un
+protocollo di valutazione alla cieca. Decine di consegne committate con verifiche.</p>
+<p><strong>2. La qualità è misurata, non dichiarata.</strong> Il modello costruito dalla squadra
+batte il metodo di scoring tradizionale usato come riferimento in <strong>18 finestre
+temporali di test su 18</strong>, sempre su dati che il modello non aveva mai visto. Non
+"funziona bene": vince sempre, e il numero è verificabile.</p>
+<p><strong>3. Il controllo incrociato tra AI scova errori veri.</strong> È il risultato che considero
+più interessante. Esempi reali documentati: un'AI ha presentato una conclusione
+statistica corretta ma più debole di come sembrava — il caposquadra l'ha contestata e
+la verifica estesa ha prodotto una conclusione più solida; in senso inverso, lo
+specialista ha trovato e corretto un dato invecchiato in un documento del caposquadra.
+Contesti indipendenti che si revisionano a vicenda: gli errori emergono PRIMA di
+arrivare nel prodotto.</p>
+<p><strong>4. La squadra sa dire NO al committente.</strong> In un solo giorno ha falsificato, con
+esperimenti registrati in anticipo (criteri scritti PRIMA di guardare i risultati),
+quattro ipotesi a cui tenevamo — due delle quali mie. Un sistema che conferma sempre
+quello che il capo vuole sentirsi dire è inutile e pericoloso; questo dice no con i
+numeri in mano. L'anti-compiacenza qui non è una promessa: è agli atti.</p>
+<p><strong>5. Il protocollo impara dai propri fallimenti.</strong> La prima notte il coordinamento ha
+fallito in modi anche gravi (richieste perse, uno specialista bloccato 75 minuti). Ogni
+fallimento è stato analizzato e trasformato in una regola meccanica: nelle classi di
+errore "meccanizzate" le recidive finora sono zero. La curva di apprendimento del
+protocollo è essa stessa una misura che sto raccogliendo.</p>
+<h2>Cosa NON ho ancora dimostrato (e lo dico)</h2>
+<p>Che la squadra di AI batta una singola AI ben istruita <strong>a parità di budget</strong>: per
+dirlo serve un esperimento di confronto con bracci di controllo, che è progettato ma
+non ancora eseguito. Quello che ho oggi sono osservazioni documentate e ripetute, su un
+solo progetto. La differenza tra "osservato" e "dimostrato" è il cuore del mio modo di
+lavorare: chi vi dice "dimostrato" dopo un progetto solo, vi sta vendendo qualcosa.</p>
+<h2>Cosa significa per un'azienda</h2>
+<p>Il metodo è applicabile ovunque serva costruire o revisionare un sistema complesso
+(dati, software, analisi) con tre garanzie che di solito mancano nei progetti "fatti
+con l'AI":</p>
+<ol>
+<li><strong>Tracciabilità</strong>: ogni scelta tecnica ha un autore, una data e un'evidenza scritta.</li>
+<li><strong>Qualità verificata in modo incrociato</strong>, non autocertificata da chi ha scritto il codice.</li>
+<li><strong>Controllo umano sui punti irreversibili</strong>, per contratto e non per cortesia.</li>
+</ol>
+<p>Se volete capire se questo approccio si adatta a un vostro problema, il primo passo è
+una conversazione sul perimetro: cosa va costruito, cosa va verificato, dove serve la
+firma umana.</p>
+  </div>
+  <p class="back"><a href="/">&larr; Tutti gli articoli</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <p class="footer-note">Scrivo di sistemi multi-agente e di quello che imparo costruendoli.</p>
+  <div class="icon-row">
+    <a class="icon-btn" href="https://www.linkedin.com/in/giampaolo-mangiaracina/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a class="icon-btn" href="mailto:giampaolo@giampaolomangiaracina.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+  </div>
+  <p class="copyright">&copy; 2026 Giampaolo Mangiaracina</p>
+</footer>
+</body>
+</html>
