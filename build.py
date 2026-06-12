@@ -25,7 +25,7 @@ DOMAIN = "giampaolomangiaracina.com"
 # --- config sito (modificabile a mano) ---
 SITE = {
     "name": "Giampaolo Mangiaracina",
-    "intro": "Sono un AI/GenAI engineer. Progetto e costruisco sistemi multi-agente per problemi reali. Qui condivido esperimenti e appunti di lavoro: metodo, osservazioni, risultati.",
+    "intro": "CTO e AI/GenAI engineer. Costruisco prodotti AI-driven e coordino i team che li realizzano — oggi attorno ai sistemi multi-agente. Fondatore di FadPro e CityAdvisor.ai. Qui condivido metodo, esperimenti e risultati.",
     "email": "giampaolo@giampaolomangiaracina.com",
     "linkedin": "https://www.linkedin.com/in/giampaolo-mangiaracina/",
 }
