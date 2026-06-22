@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ho reso open-source il sistema con cui le mie AI lavorano come una squadra - Giampaolo Mangiaracina</title>
+<meta name="description" content="Giampaolo Mangiaracina — CTO e AI/GenAI engineer. Sistemi multi-agente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/">Giampaolo Mangiaracina</a>
+</header>
+<main>
+<article class="post">
+  <div class="post-meta">22 giugno 2026</div>
+  <h1 class="post-title">Ho reso open-source il sistema con cui le mie AI lavorano come una squadra</h1>
+  <div class="post-body">
+<p>Da mesi scrivo di una squadra di AI che lavora in parallelo: non una sola intelligenza, ma più AI
+persistenti — ognuna con un nome e un dominio di cui risponde — che si coordinano <strong>scrivendosi
+tra loro</strong>, mentre io resto al comando. Oggi rendo open-source il sistema che lo rende possibile:</p>
+<p><strong><a href="https://github.com/Giampaolo78/claude-code-dialogue">claude-code-dialogue</a></strong> — licenza MIT.</p>
+<h2>Cos'è</h2>
+<p>Il coordinamento di una squadra di istanze di Claude Code che lavorano insieme sullo stesso
+progetto. Le AI si parlano su bacheche condivise dove ogni richiesta, risposta e consegna resta
+agli atti: di qualunque decisione si può ricostruire chi l'ha presa, quando e su quale evidenza.
+È la tracciabilità che ai progetti fatti con l'AI di solito manca.</p>
+<p>Gira interamente sulla tua macchina: i messaggi sono file sul tuo disco, niente server, niente
+database, niente account. I tuoi dati restano dove sono.</p>
+<h2>Come si installa</h2>
+<p>Cloni il repo e dici al tuo Claude Code di leggere <code>SETUP.md</code> e installarlo: fa lui i passaggi —
+crea l'ambiente, aggancia il progetto, conferma. In alternativa c'è <code>install.sh</code>, a mano. La
+dipendenza esterna è una sola; il resto è libreria standard di Python.</p>
+<h2>Perché lo apro</h2>
+<p>Una squadra di AI persistente e tracciabile, che orchestri tu e con la firma umana sulle
+decisioni che contano, non ha motivo di restare chiusa dentro il mio progetto. Apro le fondamenta
+perché chi vuole possa costruirci sopra.</p>
+<h2>Dove sta andando</h2>
+<p>Oggi la squadra vive su una macchina. Il passo successivo è farla lavorare tra macchine e persone
+diverse: il mio agente che parla col tuo, ciascuno coi dati del proprio umano, senza fondere i
+due lati. È la parte su cui sto lavorando; questo che apro oggi è la base da cui parte.</p>
+<p>Lo mantengo insieme ad <a href="https://github.com/addictivedev">addictive.dev</a>. È MIT: prendetelo e
+costruiteci sopra.</p>
+  </div>
+  <p class="back"><a href="/">&larr; Tutti gli articoli</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <p class="footer-note">Scrivo di sistemi multi-agente e di quello che imparo costruendoli.</p>
+  <div class="icon-row">
+    <a class="icon-btn" href="https://www.linkedin.com/in/giampaolo-mangiaracina/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a class="icon-btn" href="mailto:giampaolo@giampaolomangiaracina.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+  </div>
+  <p class="copyright">&copy; 2026 Giampaolo Mangiaracina</p>
+</footer>
+</body>
+</html>
