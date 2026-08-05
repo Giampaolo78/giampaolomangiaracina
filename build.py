@@ -103,6 +103,12 @@ def build():
     if STATIC.exists():
         shutil.copytree(STATIC, OUT / "static")
 
+    # /favicon.ico anche nella root: crawler, feed reader e Google la richiedono li'
+    # a prescindere dai tag <link> nell'head.
+    favicon = STATIC / "img" / "favicon.ico"
+    if favicon.exists():
+        shutil.copy2(favicon, OUT / "favicon.ico")
+
     base = read_template("base.html")
     index_tpl = read_template("index.html")
     post_tpl = read_template("post.html")
