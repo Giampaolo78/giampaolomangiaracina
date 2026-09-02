@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PSQG7P03TV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PSQG7P03TV');
+</script>
+<title>Il modello è la parte più facile da sostituire - Giampaolo Mangiaracina</title>
+<meta name="description" content="Giampaolo Mangiaracina — CTO e AI/GenAI engineer. Sistemi multi-agente.">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/static/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/static/img/favicon-16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/">Giampaolo Mangiaracina</a>
+</header>
+<main>
+<article class="post">
+  <div class="post-meta">27 luglio 2026</div>
+  <h1 class="post-title">Il modello è la parte più facile da sostituire</h1>
+  <div class="post-body">
+<p>Il dibattito pubblico resta fermo sulla classifica: quale modello ragiona meglio,
+quale costa meno per token. Ma un modello si cambia in un pomeriggio. Ciò che non si
+cambia è l'impalcatura intorno — l'<em>harness</em>, per chi usa il nome inglese: dove vive
+lo stato, come è isolata la memoria tra un compito e l'altro, chi possiede l'ambiente
+in cui l'agente esegue.</p>
+<h2>Il minuto 140</h2>
+<p>Un agente che lavora per tre ore su un compito lungo — migrare uno schema,
+riconciliare un archivio, produrre un report da cento fonti — cade al minuto 140.
+Timeout, riavvio, limite di contesto. Cosa succede?</p>
+<p>Nella maggior parte dei sistemi che vedo: si riparte da zero, e i 140 minuti sono
+persi. Nel caso peggiore si riparte a metà, e le operazioni già fatte vengono rifatte:
+un record scritto due volte, una mail spedita due volte.</p>
+<p>La risposta è vecchia quanto l'ingegneria backend: punti di ripristino, stato
+persistente fuori dal processo, operazioni che si possono ripetere senza danno.
+Macchine a stati, code durevoli. Non è un problema nuovo e non è specifico degli
+agenti: cambia il nome, non la sostanza. Ma è la decisione che separa una demo da un
+sistema, ed è quella che i team prendono per ultima, dopo aver scelto il modello che
+si vede in classifica.</p>
+<h2>Tre pattern, una domanda</h2>
+<p>Oggi in produzione si contendono il campo tre schemi: esecuzione gestita dal fornitore
+del modello, esecuzione durevole su infrastruttura propria, orchestrazione di più
+agenti per ruoli. Non si distinguono per qualità del modello. Si distinguono per chi
+paga il costo operativo e per cosa succede quando il processo cade a metà.</p>
+<p>Nel sistema con cui lavoro la scelta è stata la più semplice possibile: lo stato sono
+file su disco. Ogni messaggio tra agenti, ogni consegna, ogni decisione è un file.
+Nessun server, nessun database, nessuna sessione da cui dipendere. Un agente che cade
+riparte leggendo la bacheca, e trova esattamente dove era rimasto — perché la verità
+sta nell'artefatto, non nella memoria del modello.</p>
+<h2>Il test del cambio di fornitore</h2>
+<p>C'è un modo rapido per capire quanto del vostro sistema è vostro. Immaginate di
+cambiare fornitore del modello domani mattina. Cosa sopravvive?</p>
+<p>Sopravvivono — se esistono — i prompt versionati, le specifiche, l'insieme di casi su
+cui misurate l'accuratezza, i controlli automatici che vincolano cosa l'agente può
+fare, il registro delle correzioni fatte da persone. Non sopravvivono i pesi del
+modello, che non erano vostri comunque: il laboratorio che li addestra li vende
+identici a voi e ai vostri concorrenti, allo stesso prezzo. Tutto ciò che è
+noleggiabile è già di tutti.</p>
+<p>Per la maggior parte dei team che incontro l'inventario di ciò che sopravvive è vicino
+a zero. Si sposta il flusso su un nuovo strumento e si riparte, perché non c'era un
+metodo: c'era un'abitudine legata a un'interfaccia. Chi cambia strumento agentico ogni
+sei mesi non sta cavalcando una transizione. Sta dimostrando di non aver accumulato
+niente che sopravviva al cambio.</p>
+<h2>Ogni correzione è un dato</h2>
+<p>Da qui una lettura diversa del «tenere l'umano nel giro». Non è solo prudenza: è il
+meccanismo con cui la conoscenza dell'organizzazione viene catturata. Ogni volta che
+una persona corregge l'agente, quella correzione è un dato. Se viene registrata dove
+l'agente la rilegge, l'errore non si ripete. Se va persa in una chat, lo stesso errore
+lo pagate due volte.</p>
+<p><a href="/post/workflow-agentico-asset-del-codebase/">A maggio</a> ne ho scritto dal lato del
+codice: il contesto che dai all'agente è un asset del codebase, versionato e
+revisionato. Questo è lo stesso principio un piano più in basso. Un agente che produce
+lavoro senza lasciare traccia è un interinale più veloce, non capitale. Diventa
+capitale quando l'impalcatura in cui opera registra cosa ha fatto, perché, e cosa è
+stato corretto.</p>
+<p>L'affidabilità non esce dal modello. Esce dall'architettura che lo contiene.</p>
+  </div>
+  <p class="back"><a href="/">&larr; Tutti gli articoli</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <p class="footer-note">Scrivo di sistemi multi-agente e di quello che imparo costruendoli.</p>
+  <div class="icon-row">
+    <a class="icon-btn" href="https://www.linkedin.com/in/giampaolo-mangiaracina/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a class="icon-btn" href="mailto:giampaolo@giampaolomangiaracina.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+  </div>
+  <p class="copyright">&copy; 2026 Giampaolo Mangiaracina</p>
+</footer>
+</body>
+</html>

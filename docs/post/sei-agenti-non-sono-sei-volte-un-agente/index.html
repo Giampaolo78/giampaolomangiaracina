@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PSQG7P03TV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PSQG7P03TV');
+</script>
+<title>Sei agenti non sono sei volte un agente - Giampaolo Mangiaracina</title>
+<meta name="description" content="Giampaolo Mangiaracina — CTO e AI/GenAI engineer. Sistemi multi-agente.">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/static/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/static/img/favicon-16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/">Giampaolo Mangiaracina</a>
+</header>
+<main>
+<article class="post">
+  <div class="post-meta">30 giugno 2026</div>
+  <h1 class="post-title">Sei agenti non sono sei volte un agente</h1>
+  <div class="post-body">
+<p>Sei agenti che si parlano non sono sei volte un agente. Sono quindici canali di
+comunicazione: N per N meno uno, diviso due. Con sette agenti i canali sono ventuno;
+con dieci, quarantacinque. La capacità cresce in linea retta. Il coordinamento cresce
+al quadrato. È la stessa curva che ha affondato i progetti software ogni volta che a
+un ritardo si è risposto aggiungendo persone.</p>
+<h2>Il secondo conto, quello che nessuno fa</h2>
+<p>Una catena di cinque agenti, ognuno affidabile al 90%, non è affidabile al 90%. È
+affidabile al 59%: 0,9 elevato alla quinta. Gli errori si moltiplicano a ogni
+passaggio, non si annullano.</p>
+<table>
+<thead>
+<tr>
+<th>Affidabilità del singolo passo</th>
+<th>Catena di 3</th>
+<th>Catena di 5</th>
+<th>Catena di 8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>90%</td>
+<td>73%</td>
+<td>59%</td>
+<td>43%</td>
+</tr>
+<tr>
+<td>95%</td>
+<td>86%</td>
+<td>77%</td>
+<td>66%</td>
+</tr>
+<tr>
+<td>99%</td>
+<td>97%</td>
+<td>95%</td>
+<td>92%</td>
+</tr>
+</tbody>
+</table>
+<p>C'è un dettaglio che rende il conto ancora peggiore. Ogni passaggio di consegne tra
+agenti è un riassunto, e ogni riassunto perde informazione. Quattro passaggi in catena
+e l'output è la fotocopia di una fotocopia: l'accuratezza non crolla per un errore
+grande, si erode in una sequenza di perdite piccole che nessuna metrica di fine catena
+intercetta.</p>
+<h2>Cosa ho visto nella mia squadra</h2>
+<p>La squadra con cui lavoro è un caposquadra AI, tre specialisti AI e io. Cinque nodi:
+con messaggi punto a punto sarebbero dieci canali. La prima notte, con un coordinamento
+ancora immaturo, il sistema ha fallito esattamente lì: richieste perse tra un canale e
+l'altro, uno specialista fermo 75 minuti ad aspettare una risposta che era finita
+altrove.</p>
+<p>La correzione non è stata «meno agenti». È stata cambiare topologia. Gli agenti hanno
+smesso di spedirsi riassunti e hanno cominciato a lavorare su bacheche condivise: uno
+spazio che ogni agente legge e scrive, dove la verità sta nell'artefatto e non nei
+messaggi che rimbalzano. Il coordinamento torna lineare — ogni agente ha un canale
+solo, la bacheca — e ogni fallimento diventa una regola meccanica. Nelle classi di
+errore che ho meccanizzato, le recidive sono zero. Il sistema è open-source:
+<a href="https://github.com/Giampaolo78/claude-code-dialogue">claude-code-dialogue</a>.</p>
+<h2>Quando un agente in più si ripaga</h2>
+<p>Il criterio che uso: quel passaggio è controllabile da solo? Se la sua uscita ha un
+riscontro esterno al modello — compila, il test passa, il numero torna, il modello
+batte il riferimento su dati mai visti — l'agente in più tronca la propagazione
+dell'errore e si ripaga. È così che il modello costruito dalla squadra ha battuto lo
+scoring di riferimento in 18 finestre temporali su 18: ogni consegna aveva un
+riscontro oggettivo prima di diventare l'input della successiva.</p>
+<p>Se invece è un altro modello che commenta il precedente senza riscontro esterno, stai
+comprando latenza e token, e a volte amplifichi un errore detto con sicurezza. Far
+rivedere la risposta di un modello da un altro modello abbassa gli errori solo se i
+due sbagliano in modo indipendente — e GPT, Claude e Gemini condividono buona parte
+dei dati di addestramento e dei bias. Su un caso ambiguo, spesso concordano sulla
+risposta sbagliata.</p>
+<h2>La regola</h2>
+<p>Il multi-agente conviene in due casi: sottotask indipendenti che girano in parallelo,
+o un controllo oggettivo tra un passo e l'altro. Fuori da lì, una catena di agenti è
+un solo modello che parla con sé stesso, più lentamente e più caro.</p>
+<p>La metrica da mettere accanto ad accuratezza, latenza e costo non è il numero di
+agenti. È la profondità della catena di consegne, e quanta informazione sopravvive a
+ogni passaggio. Aggiungere un agente è banale. Aggiungerlo senza aprire un nuovo
+canale è il problema di design.</p>
+  </div>
+  <p class="back"><a href="/">&larr; Tutti gli articoli</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <p class="footer-note">Scrivo di sistemi multi-agente e di quello che imparo costruendoli.</p>
+  <div class="icon-row">
+    <a class="icon-btn" href="https://www.linkedin.com/in/giampaolo-mangiaracina/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a class="icon-btn" href="mailto:giampaolo@giampaolomangiaracina.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+  </div>
+  <p class="copyright">&copy; 2026 Giampaolo Mangiaracina</p>
+</footer>
+</body>
+</html>

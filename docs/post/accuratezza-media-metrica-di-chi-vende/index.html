@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PSQG7P03TV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PSQG7P03TV');
+</script>
+<title>L&#x27;accuratezza media è la metrica di chi vende - Giampaolo Mangiaracina</title>
+<meta name="description" content="Giampaolo Mangiaracina — CTO e AI/GenAI engineer. Sistemi multi-agente.">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/static/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/static/img/favicon-16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/">Giampaolo Mangiaracina</a>
+</header>
+<main>
+<article class="post">
+  <div class="post-meta">1 settembre 2026</div>
+  <h1 class="post-title">L&#x27;accuratezza media è la metrica di chi vende</h1>
+  <div class="post-body">
+<p>«Accuratezza del forecasting migliorata fino al 50%.» Fino al 50% rispetto a cosa?</p>
+<p>Senza il punto di partenza quel numero non misura niente. Passare da un errore del
+40% al 20% e passare da un riferimento scelto male a uno meno peggio producono
+entrambi «50% di miglioramento», e raccontano due storie opposte. «Fino al» poi è un
+tetto, non una media: è il caso migliore osservato una volta, non quello che vi
+aspettate la settimana prossima.</p>
+<p><a href="/post/valutare-un-predittore/">Ad aprile</a> ho scritto le quattro domande che faccio
+prima di fidarmi di un predittore. Questo è il seguito: perché anche quando le
+risposte ci sono, la <em>media</em> resta il numero sbagliato.</p>
+<h2>Il costo dell'errore ha una forma</h2>
+<p>Dove l'output è testo, sbagliare è quasi gratis: cancellate la frase e riscrivete.
+Dove l'output muove qualcosa — un ordine, un lotto, un turno, un rimborso — l'errore
+resta, e i conti sono asimmetrici.</p>
+<p>Caso costruito apposta. Un classificatore smista 10.000 eventi al giorno con
+un'accuratezza del 99%. Sono 100 errori al giorno, 36.500 l'anno. Se gli eventi
+critici sono l'1% del totale — cento al giorno — e il modello sbaglia proprio su
+quelli il 30% delle volte, l'accuratezza aggregata resta al 99%: i 30 errori critici
+si perdono nei 10.000. Ma il sistema fallisce il 30% dei casi che giustificavano la
+sua esistenza. Trenta al giorno. Undicimila l'anno.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Eventi al giorno</th>
+<th>Errori</th>
+<th>Accuratezza</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classe ordinaria</td>
+<td>9.900</td>
+<td>70</td>
+<td>99,3%</td>
+</tr>
+<tr>
+<td>Classe critica</td>
+<td>100</td>
+<td>30</td>
+<td><strong>70%</strong></td>
+</tr>
+<tr>
+<td><strong>Aggregato</strong></td>
+<td><strong>10.000</strong></td>
+<td><strong>100</strong></td>
+<td><strong>99%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Il 99% è vero. Ed è il numero che nasconde esattamente il problema. L'accuratezza
+aggregata è una metrica di vanità: misura il caso medio in un problema dove il valore
+vive nelle code.</p>
+<h2>Le tre cose che mancano sempre</h2>
+<p>Un numero su cui contare ha tre ingredienti, e nel claim tipico non ce n'è uno: il
+<strong>riferimento</strong> (meglio di un forecast manuale? di una media mobile a sette giorni? un
+forecast ingenuo batte già molti modelli «AI»), la <strong>metrica e l'orizzonte</strong> (un errore
+a quattro settimane sull'aggregato e un errore a un giorno sul singolo articolo non
+sono confrontabili), la <strong>distribuzione dell'errore</strong> sugli elementi che pesano.
+Un'accuratezza media alta può nascondere proprio gli errori che fanno danno.</p>
+<p>Un numero su cui contare è un numero che un altro può ricostruire: dataset,
+riferimento, finestra temporale, criterio. «Fino al 50%» non si ricostruisce. È una
+cifra costruita per convincere, non per essere verificata.</p>
+<h2>Cosa chiedo al posto della percentuale</h2>
+<p>Un campione di audit conservato. Non «l'accuratezza è 94%», ma: ecco 200 casi
+ricontrollati a mano, con la decisione del modello, la decisione giusta e il
+ragionamento attaccato. Un campione così non riassume, espone. Ci si chiede «dove
+cede» invece di «quanto spesso indovina». Lo si riapre quando cambia il modello,
+quando i dati si spostano, quando qualcuno contesta una singola etichetta. La
+percentuale invece va rifatta da capo, e fino ad allora non si sa più se è vera.</p>
+<p>È così che lavoro. Il sistema predittivo costruito dalla mia squadra non «fa il 95%»:
+batte il riferimento in 18 finestre temporali su 18, su dati mai visti, con un
+protocollo di valutazione alla cieca e i criteri scritti prima di guardare i
+risultati. Le quattro ipotesi che la squadra ha falsificato — due erano mie — sono
+agli atti con lo stesso metodo. Non è una percentuale: è un registro che chiunque può
+riaprire.</p>
+<h2>La domanda che chiude</h2>
+<p>La distanza tra un'automazione che regge e una demo che colpisce sta qui: la prima vi
+dà gli ingredienti del numero, la seconda vi dà solo il numero. Prima di fidarvi di
+un'accuratezza chiedete: misurata come, su quali dati, contro quale alternativa, e —
+soprattutto — quanto costa l'1% in cui sbaglia, e chi se ne accorge.</p>
+  </div>
+  <p class="back"><a href="/">&larr; Tutti gli articoli</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <p class="footer-note">Scrivo di sistemi multi-agente e di quello che imparo costruendoli.</p>
+  <div class="icon-row">
+    <a class="icon-btn" href="https://www.linkedin.com/in/giampaolo-mangiaracina/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a class="icon-btn" href="mailto:giampaolo@giampaolomangiaracina.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+  </div>
+  <p class="copyright">&copy; 2026 Giampaolo Mangiaracina</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PSQG7P03TV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PSQG7P03TV');
+</script>
+<title>Funzionava nel pilota, crolla in produzione. Il collo di bottiglia è il retrieval, non il modello - Giampaolo Mangiaracina</title>
+<meta name="description" content="Giampaolo Mangiaracina — CTO e AI/GenAI engineer. Sistemi multi-agente.">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/static/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/static/img/favicon-16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/">Giampaolo Mangiaracina</a>
+</header>
+<main>
+<article class="post">
+  <div class="post-meta">14 luglio 2026</div>
+  <h1 class="post-title">Funzionava nel pilota, crolla in produzione. Il collo di bottiglia è il retrieval, non il modello</h1>
+  <div class="post-body">
+<p>Un sistema che risponde a domande sui documenti aziendali (RAG: prima recupera i
+passaggi pertinenti, poi il modello scrive la risposta a partire da quelli) funziona
+nel pilota e crolla in produzione. Quasi sempre non è il modello: ha risposto bene, a
+partire dal contesto sbagliato.</p>
+<h2>Perché il pilota mente</h2>
+<p>Uso un caso costruito apposta, equivalente a quelli che incontro. Un'azienda di servizi
+vuole interrogare i suoi documenti interni: contratti, verbali, report mensili. Il
+pilota gira su 300 documenti scelti da chi lo costruisce. Con un corpus così piccolo,
+il passaggio giusto entra tra i primi cinque candidati quasi per inerzia: c'è poco con
+cui confonderlo. Il recupero sembra perfetto, le risposte sono brillanti, il pilota
+viene approvato.</p>
+<p>Poi si porta lo stesso sistema su 40.000 documenti disordinati. E la ricerca per
+similarità comincia a pescare paragrafi vicini per vocabolario ma estranei alla
+domanda. Chiedi «qual è il trend del margine sulla linea X» e torna il paragrafo più
+denso di lessico finanziario — non quello che contiene la risposta. La similarità tra
+vettori misura la prossimità semantica, non la rilevanza rispetto alla domanda di
+business. Sono due cose diverse, e nel pilota la differenza non si vede.</p>
+<h2>Il conto che mostra dove sta la leva</h2>
+<p>Chiamo <em>recall del recupero</em> la frequenza con cui il passaggio giusto entra tra i
+candidati che il modello vede. Supponiamo che sia il 70%, e che il modello — quando ha
+il contesto giusto — risponda bene il 95% delle volte.</p>
+<ul>
+<li>Accuratezza del sistema: 0,70 × 0,95 = <strong>66%</strong>.</li>
+<li>Cambio modello, passo al 99%: 0,70 × 0,99 = <strong>69%</strong>. Tre punti, per un modello che
+  costa il doppio.</li>
+<li>Tengo il modello, porto il recall al 90%: 0,90 × 0,95 = <strong>86%</strong>. Venti punti.</li>
+</ul>
+<p>Il tetto del sistema è il recall del recupero. Un modello più capace o embedding più
+grandi non recuperano un passaggio che tra i candidati non è mai entrato. Eppure
+quando il sistema sbaglia la prima reazione è cambiare modello — perché l'errore
+<em>sembra</em> un'allucinazione, e invece è un recupero fallito.</p>
+<h2>La metrica che manca</h2>
+<p>Il recall del recupero va misurato a parte, prima della generazione. Il metodo che uso
+è banale e quasi nessuno lo applica: un insieme di riferimento di 100 domande vere,
+ognuna con il passaggio che la risolve indicato a mano da chi conosce i documenti. Per
+ogni domanda: il passaggio giusto è tra i primi k candidati, sì o no? Il numero che
+esce è il tetto del sistema. Senza questa misura ogni errore viene attribuito al
+modello, e si ottimizza lo strato sbagliato per mesi.</p>
+<p>Il campione di 100 va costruito prima di scegliere l'architettura, e riaperto ogni
+volta che cambia il corpus: 40.000 documenti oggi sono 55.000 tra un anno, e il recall
+che era 90% non resta 90% da solo.</p>
+<h2>Cosa alza il recall</h2>
+<p>Non la generazione. Il recupero ibrido: ricerca per parole chiave accanto a quella per
+similarità (le sigle, i codici prodotto, i nomi propri la similarità li perde), filtri
+sui metadati (data, reparto, tipo di documento) che restringono il campo prima ancora
+di cercare, e la struttura del documento — un paragrafo con il suo titolo di sezione
+dice più di un paragrafo nudo.</p>
+<p>Non è rifinitura. È la differenza tra un sistema che indovina e uno che recupera. E la
+domanda da fare a chi vi presenta un pilota che «funziona» è una sola: su quanti
+documenti, e qual è il recall del recupero misurato a parte.</p>
+  </div>
+  <p class="back"><a href="/">&larr; Tutti gli articoli</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <p class="footer-note">Scrivo di sistemi multi-agente e di quello che imparo costruendoli.</p>
+  <div class="icon-row">
+    <a class="icon-btn" href="https://www.linkedin.com/in/giampaolo-mangiaracina/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a class="icon-btn" href="mailto:giampaolo@giampaolomangiaracina.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+  </div>
+  <p class="copyright">&copy; 2026 Giampaolo Mangiaracina</p>
+</footer>
+</body>
+</html>

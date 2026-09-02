@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PSQG7P03TV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PSQG7P03TV');
+</script>
+<title>Farsi trovare quando nessuno cerca più - Giampaolo Mangiaracina</title>
+<meta name="description" content="Giampaolo Mangiaracina — CTO e AI/GenAI engineer. Sistemi multi-agente.">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/static/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/static/img/favicon-16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-name" href="/">Giampaolo Mangiaracina</a>
+</header>
+<main>
+<article class="post">
+  <div class="post-meta">21 agosto 2026</div>
+  <h1 class="post-title">Farsi trovare quando nessuno cerca più</h1>
+  <div class="post-body">
+<p>Chiedete a ChatGPT qual è il miglior software di fatturazione per una piccola impresa.
+Non vi dà dieci link da aprire: vi dà una risposta, e fa tre nomi. Se la vostra
+azienda è uno di quei tre, avete un cliente che non ha mai visitato il vostro sito. Se
+non c'è, per quella persona non esistete — e non ve ne accorgete, perché non c'è
+nessun clic da contare.</p>
+<p>Questo lavoro ha un nome, GEO (Generative Engine Optimization): non si gareggia per un
+elenco di link, si lavora per finire dentro la risposta. Ho passato le ultime
+settimane sugli studi che l'hanno misurato. I numeri qui sotto sono loro, con la fonte.</p>
+<h2>Cosa rende un contenuto citabile</h2>
+<p>Quando un modello cita una fonte se ne fa garante, quindi è conservativo: cita solo
+ciò di cui si fida. Il paper che ha fondato il campo (Aggarwal et al., Princeton, KDD
+2024, benchmark da 10.000 query) ha misurato cosa sposta quella fiducia: aggiungere
+<strong>statistiche</strong> alza la visibilità nelle risposte del <strong>40,6%</strong>; virgolettati da fonti
+autorevoli e citazioni esterne danno guadagni della stessa taglia. Una sola cosa la
+abbassa: il riempimento di parole chiave che ha nutrito la SEO per vent'anni. Il
+segnale non è il volume di parole, è la densità di prove.</p>
+<p>E c'è un effetto che le aziende sottovalutano: i modelli premiano chi è già citato.
+Uno studio su 275.000 riferimenti generati da GPT-4o (Algaba et al., NAACL 2025)
+trova che oltre il 60% cade nell'1% delle fonti più citate — più del doppio di una
+bibliografia umana. L'autorità si auto-rinforza: chi parte avanti, accelera.</p>
+<h2>Non esiste «l'AI»</h2>
+<p>L'errore più comune è trattare l'AI come un bersaglio unico. Profound ha analizzato
+680 milioni di citazioni: solo l'<strong>11%</strong> dei domini è citato sia da ChatGPT che da
+Perplexity. Due superfici della stessa Google, AI Overviews e AI Mode, sulla stessa
+domanda condividono il 13,7% degli URL. Search Atlas, su 5,5 milioni di risposte,
+trova che il 35-40% delle domande produce insiemi di fonti completamente disgiunti
+tra i tre motori principali.</p>
+<p>Il motivo è strutturale. Perplexity cerca sul web a ogni domanda e premia la
+freschezza. ChatGPT pesa l'autorevolezza storica e gli accordi di licenza con gli
+editori. Claude si appoggia a Brave Search, non a Google: l'86,7% degli URL che cita
+coincide con il ranking organico di Brave. «Comparire nell'AI» non è un obiettivo:
+sono quattro obiettivi diversi.</p>
+<h2>La citazione non è traffico</h2>
+<p>La SEO viveva di una metrica sola: il clic. Quella metrica si sta rompendo. Cloudflare
+(agosto 2025) misura per il crawler di Claude un rapporto di <strong>38.065 a 1</strong> tra
+contenuto ingerito e visite rimandate ai siti. Potete essere ovunque nelle risposte e
+non vederlo su nessun cruscotto.</p>
+<p>Secondo ribaltamento: Muck Rack stima che l'<strong>85,5%</strong> delle citazioni AI venga da
+<em>earned media</em> — quello che dicono di voi gli altri, non il vostro sito. Reddit da
+solo pesa il 40,1% delle citazioni fattuali nell'analisi Semrush su 150.000 citazioni
+(il dato oscilla molto tra studi, dal 3% al 60%, ma il segno non cambia). Ottimizzare
+solo le proprie pagine è curare la vetrina mentre la conversazione avviene altrove.</p>
+<h2>Da citati a usati</h2>
+<p>Fin qui, contenuto. La frontiera è un'altra. Per un agente AI un'azienda può stare a
+tre livelli: il modello vi conosce, il modello vi cita, il modello <strong>vi usa</strong>. Il
+terzo è MCP, il protocollo aperto nato da Anthropic il 25 novembre 2024 e passato a
+dicembre 2025 sotto la Linux Foundation con dentro OpenAI, Google e Microsoft:
+esponete dati e azioni come uno strumento che l'agente interroga in tempo reale. In
+sedici mesi: oltre 10.000 server pubblici, 97 milioni di download mensili degli SDK
+(un indicatore di attività degli sviluppatori, non di installazioni uniche).</p>
+<p>Non è teoria, per me: CityAdvisor.ai lo interrogo già così. È un server MCP con
+venticinque strumenti — demografia, sicurezza, trasporti, confronto tra quartieri,
+variazione nel tempo — e un agente li chiama dentro la conversazione, senza che
+nessuno apra una pagina. E il commercio è già lì: Instant Checkout dentro ChatGPT
+(OpenAI con Stripe, settembre 2025), Mastercard Agent Pay operativo da novembre 2025,
+PayPal col primo server MCP ufficiale da aprile 2025.</p>
+<h2>Il prerequisito</h2>
+<p>Esporre i dati a un agente non li rende corretti: li rende raggiungibili. Un prezzo
+sbagliato, uno stock vecchio, un nome incoerente diventano più accessibili, non più
+veri — e l'agente li serve con sicurezza. La condizione non è «essere presenti». È
+avere dati di cui ci si può fidare senza ricontrollarli. Chi non espone un'interfaccia
+per gli agenti non viene penalizzato: è irraggiungibile. È la versione 2026
+dell'essere de-indicizzati.</p>
+  </div>
+  <p class="back"><a href="/">&larr; Tutti gli articoli</a></p>
+</article>
+
+</main>
+<footer class="site-footer">
+  <p class="footer-note">Scrivo di sistemi multi-agente e di quello che imparo costruendoli.</p>
+  <div class="icon-row">
+    <a class="icon-btn" href="https://www.linkedin.com/in/giampaolo-mangiaracina/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+    <a class="icon-btn" href="mailto:giampaolo@giampaolomangiaracina.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+  </div>
+  <p class="copyright">&copy; 2026 Giampaolo Mangiaracina</p>
+</footer>
+</body>
+</html>
